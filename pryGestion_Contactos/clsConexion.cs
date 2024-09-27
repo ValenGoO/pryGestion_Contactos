@@ -34,7 +34,7 @@ namespace pryGestion_Contactos
 
                 comando.Connection = conexion;
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "SELECT c.Id, c.Nombre, c.Apellido , c.Numero, c.Mail, p.Categoria\r\nFROM Contacto AS c\r\nINNER JOIN Categorias AS p ON p.Id = c.Categoria;";
+                comando.CommandText = "SELECT c.Id, c.Nombre, c.Apellido , c.Numero, c.Mail, p.Categoria\r\nFROM Contacto AS c\r\nINNER JOIN Categorias AS p ON p.Id = c.Categoria Order by c.Categoria;";
                 DataTable tablainventario = new DataTable();
                 adaptador = new OleDbDataAdapter(comando);
                 adaptador.Fill(tablainventario);
@@ -68,7 +68,7 @@ namespace pryGestion_Contactos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show( ex.Message);
             }
             finally
             {
@@ -98,7 +98,7 @@ namespace pryGestion_Contactos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show( ex.Message);
             }
         }
         public void Modificar(clsContacto contacto)
@@ -294,11 +294,11 @@ namespace pryGestion_Contactos
                         {
 
 
-                            string nombre = fila.Cells[0].Value?.ToString() ?? "";
-                            string apellido = fila.Cells[1].Value?.ToString() ?? "";
-                            string numero = fila.Cells[2].Value?.ToString() ?? "";
-                            string mail = fila.Cells[3].Value?.ToString() ?? "";
-                            string categoria = fila.Cells[4].Value?.ToString() ?? "";
+                            string nombre = fila.Cells[1].Value?.ToString() ?? "";
+                            string apellido = fila.Cells[2].Value?.ToString() ?? "";
+                            string numero = fila.Cells[3].Value?.ToString() ?? "";
+                            string mail = fila.Cells[4].Value?.ToString() ?? "";
+                            string categoria = fila.Cells[5].Value?.ToString() ?? "";
 
 
                             archivo.WriteLine($"{nombre};{apellido};{numero};{mail};{categoria}");

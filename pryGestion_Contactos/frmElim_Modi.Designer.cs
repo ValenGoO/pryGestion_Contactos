@@ -64,6 +64,8 @@
             // 
             // dgvContactos
             // 
+            this.dgvContactos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvContactos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvContactos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvContactos.Dock = System.Windows.Forms.DockStyle.Right;
             this.dgvContactos.Location = new System.Drawing.Point(274, 0);
@@ -71,6 +73,7 @@
             this.dgvContactos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvContactos.Size = new System.Drawing.Size(466, 487);
             this.dgvContactos.TabIndex = 5;
+            this.dgvContactos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvContactos_CellFormatting);
             this.dgvContactos.SelectionChanged += new System.EventHandler(this.dgvContactos_SelectionChanged);
             // 
             // gpbContactos

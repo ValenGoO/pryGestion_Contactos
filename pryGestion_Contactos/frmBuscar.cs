@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -85,6 +86,44 @@ namespace pryGestion_Contactos
         {
             conexion.Exportar_txt(dgvContactos);
             conexion.Exportar_csv(dgvContactos);
+        }
+
+        private void dgvContactos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dgvContactos.Rows)
+                {
+                    var stockCell = row.Cells["Categoria"];
+                    if (stockCell.Value != null)
+                    {
+                        string Categoria = stockCell.Value.ToString();
+                        Debug.WriteLine($"Stock: {Categoria}");
+
+                        if (Categoria == "Amigos")
+                        {
+                            stockCell.Style.BackColor = Color.LightBlue;
+                        }
+                        else if (Categoria == "Familia")
+                        {
+                            stockCell.Style.BackColor = Color.LightGoldenrodYellow;
+                        }
+                        else if (Categoria == "Trabajo")
+                        {
+                            stockCell.Style.BackColor = Color.LightSalmon;
+                        }
+                        else
+                        {
+                            stockCell.Style.BackColor = Color.White;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        
         }
     }
 }

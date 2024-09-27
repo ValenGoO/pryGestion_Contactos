@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -41,39 +42,39 @@ namespace pryGestion_Contactos
             if (!estado)
             {
                 btnModificar.BackColor = Color.IndianRed;
-                btnEliminar.BackColor = Color.IndianRed; 
+                btnEliminar.BackColor = Color.IndianRed;
             }
             else
             {
                 btnModificar.BackColor = Color.Green;
-                btnEliminar.BackColor = Color.Green; 
+                btnEliminar.BackColor = Color.Green;
             }
         }
         private void btnModificar_Click(object sender, EventArgs e)
         {
-           
-                try
-                {
-                    clsContacto nuevo = new clsContacto
-                    {
-                        Codigo = codigo,
-                        Nombre = txtNombre.Text,
-                        Apellido = txtApellido.Text,
-                        Numero = txtNumero.Text,
-                        Mail = txtMail.Text,
-                        Categoria = cmbCategoria.SelectedIndex + 1
-                    };
-                    conexion.Modificar(nuevo);
-                    conexion.Mostrar(dgvContactos);
-                }
 
-                catch (Exception ex)
+            try
+            {
+                clsContacto nuevo = new clsContacto
                 {
-                    MessageBox.Show(ex.Message);
-                }
-                
+                    Codigo = codigo,
+                    Nombre = txtNombre.Text,
+                    Apellido = txtApellido.Text,
+                    Numero = txtNumero.Text,
+                    Mail = txtMail.Text,
+                    Categoria = cmbCategoria.SelectedIndex + 1
+                };
+                conexion.Modificar(nuevo);
+                conexion.Mostrar(dgvContactos);
             }
-        
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
 
         private void dgvContactos_SelectionChanged(object sender, EventArgs e)
         {
@@ -81,19 +82,19 @@ namespace pryGestion_Contactos
             {
                 DataGridViewRow selectedRow = dgvContactos.SelectedRows[0];
 
-                
+
                 if (selectedRow.Cells[0].Value != null)
                 {
                     codigo = Convert.ToInt32(selectedRow.Cells[0].Value);
                 }
 
-                
+
                 txtNombre.Text = selectedRow.Cells[1]?.Value?.ToString() ?? string.Empty;
                 txtApellido.Text = selectedRow.Cells[2]?.Value?.ToString() ?? string.Empty;
                 txtNumero.Text = selectedRow.Cells[3]?.Value?.ToString() ?? string.Empty;
                 txtMail.Text = selectedRow.Cells[4]?.Value?.ToString() ?? string.Empty;
 
-               
+
                 string categoriaSeleccionada = selectedRow.Cells[5]?.Value?.ToString() ?? string.Empty;
                 int indexCategoria = cmbCategoria.FindStringExact(categoriaSeleccionada);
 
@@ -103,7 +104,7 @@ namespace pryGestion_Contactos
                 }
                 else
                 {
-                   
+
                     MessageBox.Show("Categoría no encontrada.");
                 }
             }
@@ -132,7 +133,7 @@ namespace pryGestion_Contactos
                     txtApellido.Clear();
                     txtNumero.Clear();
                     txtMail.Clear();
-                   
+
                 }
                 catch (Exception ex)
                 {
@@ -144,6 +145,43 @@ namespace pryGestion_Contactos
                 MessageBox.Show("No se ha seleccionado ningún contacto.");
             }
         }
+
+        private void dgvContactos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+             
+                if (dgvContactos.Columns[e.ColumnIndex].Name == "Categoria")
+                {
+                    if (e.Value != null)
+                    {
+                        string Categoria = e.Value.ToString();
+                        Debug.WriteLine($"Categoria: {Categoria}");
+
+                        switch (Categoria)
+                        {
+                            case "Amigos":
+                                e.CellStyle.BackColor = Color.LightBlue;
+                                break;
+                            case "Familia":
+                                e.CellStyle.BackColor = Color.LightGoldenrodYellow;
+                                break;
+                            case "Trabajo":
+                                e.CellStyle.BackColor = Color.LightSalmon;
+                                break;
+                            default:
+                                e.CellStyle.BackColor = Color.White;
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Aca es el error: " + ex.Message);
+            }
+        }
     }
+    
     
 }

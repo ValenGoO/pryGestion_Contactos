@@ -35,10 +35,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnminim = new System.Windows.Forms.Button();
             this.btnclose = new System.Windows.Forms.Button();
             this.panelGeneral = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelmenu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -132,6 +132,18 @@
             this.panel2.Size = new System.Drawing.Size(740, 32);
             this.panel2.TabIndex = 1;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(54)))), ((int)(((byte)(83)))));
+            this.label1.Location = new System.Drawing.Point(0, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 27);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Agenda de Contactos";
+            // 
             // btnminim
             // 
             this.btnminim.Dock = System.Windows.Forms.DockStyle.Right;
@@ -166,18 +178,6 @@
             this.panelGeneral.Name = "panelGeneral";
             this.panelGeneral.Size = new System.Drawing.Size(740, 487);
             this.panelGeneral.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(54)))), ((int)(((byte)(83)))));
-            this.label1.Location = new System.Drawing.Point(0, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 27);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Agenda de Contactos";
             // 
             // frmInicio
             // 
